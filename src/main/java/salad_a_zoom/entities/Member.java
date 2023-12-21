@@ -20,13 +20,7 @@ public class Member extends Base {
     @Column(length=50, unique = true, nullable = false)
     private String email;
 
-    @Column(length=40, nullable = false)
-
-    @Column(length=65, unique = true, nullable = false)
-    private String email;
-
     @Column(length=65, nullable = false)
-
     private String password;
 
     @Column(length=40, nullable=false)
@@ -43,5 +37,4 @@ public class Member extends Base {
     @Column(length=15, nullable = false)
     private MemberType agree = MemberType.USER;
   }
-}
 
