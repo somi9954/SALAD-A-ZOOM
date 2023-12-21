@@ -20,8 +20,6 @@ public class CommentData extends Base {
     @JoinColumn(name="boardData_seq")
     private BoardData boardData;
 
-    @ManyToOne(fetch= FetchType.LAZY)
-
     @JoinColumn(name="userNo")
     private Member member;
 
