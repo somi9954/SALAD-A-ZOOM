@@ -36,4 +36,5 @@ public class Admin extends Base {
     @Enumerated(EnumType.STRING)
     @Column(length=15, nullable = false)
     private MemberType agree = MemberType.ADMIN;
+
 }
