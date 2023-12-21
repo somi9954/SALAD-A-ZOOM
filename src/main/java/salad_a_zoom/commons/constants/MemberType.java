@@ -2,7 +2,7 @@ package salad_a_zoom.commons.constants;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
+
 
 public enum MemberType {
     GUEST(false, "비회원"), // 전체사용자

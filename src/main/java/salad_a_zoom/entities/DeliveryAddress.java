@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DeliveryAddress extends Base {
 
-    @Id
+    @Id @GeneratedValue
     private Long seq;
 
     @ManyToOne(fetch= FetchType.LAZY)

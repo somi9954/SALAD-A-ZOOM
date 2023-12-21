@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QandA {
-    @Id
+    @Id @GeneratedValue
     private Long seq;
 
     @Column(length=50, nullable = false)
