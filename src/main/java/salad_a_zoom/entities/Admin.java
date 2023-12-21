@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import salad_a_zoom.commons.constants.MemberType;
 
-@Entity @Data @Builder
+@Entity
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Admin extends Base {
@@ -34,4 +36,5 @@ public class Admin extends Base {
     @Enumerated(EnumType.STRING)
     @Column(length=15, nullable = false)
     private MemberType agree = MemberType.ADMIN;
+
 }

@@ -19,6 +19,7 @@ public class Items extends Board {
     private Board board;
 
     @Id
+    @GeneratedValue
     private Long seq;
 
     @Id @Column(length = 50, nullable = false)
