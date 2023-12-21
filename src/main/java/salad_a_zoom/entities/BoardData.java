@@ -20,9 +20,31 @@ import java.util.UUID;
 })
 public class BoardData extends Base {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long seq;
 
+    @Id
+    @Column(length=100, nullable = false)
+    private String poster;
+
+    @Id
+    @Column(nullable = false)
+    private String subject;
+
+    @Lob
+    @Id
+    @Column(nullable = false)
+    private String content;
+
+    @Id
+    private boolean notice; // 공지사항 여부
+
+    @Id
+    @Column(length=50)
+    private String category;
+
+    @Id
     @Column(length=50, nullable = false)
     private String gid = UUID.randomUUID().toString();
 
@@ -34,23 +56,8 @@ public class BoardData extends Base {
     @JoinColumn(name="userNo")
     private Member member;
 
-    @Column(length=50)
-    private String category;
-
-    @Column(length=30, nullable = false)
-    private String poster;
-
     @Column(length=65)
     private String guestPw; // 비회원 비밀번호
-
-    @Column(nullable = false)
-    private String subject;
-
-    @Lob
-    @Column(nullable = false)
-    private String content;
-
-    private boolean notice; // 공지사항 여부
 
     private int viewCnt; // 조회수
 
