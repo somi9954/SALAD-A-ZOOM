@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import salad_a_zoom.commons.constants.Status;
 
 @Entity
 @Data
@@ -43,6 +44,8 @@ public class PurchaseGoods {
     @Column(nullable = false)
     private String deliveryId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_value")
     @Column(nullable = false)
-    private String orderStatus;
+    private Status status;
 }

@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class ShoppingBasket {
 
     @Id
+    @GeneratedValue
     private Long seq;
 
     @ManyToOne(fetch = FetchType.LAZY)
