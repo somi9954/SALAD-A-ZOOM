@@ -7,8 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import salad_a_zoom.commons.constants.MemberType;
 
-@Entity
-@Data @Builder
+
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member extends Base {
@@ -20,6 +21,12 @@ public class Member extends Base {
     private String email;
 
     @Column(length=40, nullable = false)
+
+    @Column(length=65, unique = true, nullable = false)
+    private String email;
+
+    @Column(length=65, nullable = false)
+
     private String password;
 
     @Column(length=40, nullable=false)
@@ -35,4 +42,6 @@ public class Member extends Base {
     @Enumerated(EnumType.STRING)
     @Column(length=15, nullable = false)
     private MemberType agree = MemberType.USER;
+  }
 }
+

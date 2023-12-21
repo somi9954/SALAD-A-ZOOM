@@ -1,5 +1,6 @@
 package salad_a_zoom.commons.constants;
 
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,4 +36,4 @@ public enum MemberType {
     public boolean getAgree() {
         return agree;
     }
-}
+

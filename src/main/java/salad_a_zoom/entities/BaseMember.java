@@ -9,10 +9,11 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@MappedSuperclass
-@Getter @Setter
+
+@MappedSuperclass @Getter @Setter
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseMember extends Base {
+
     @CreatedBy
     @Column(length=65, updatable = false)
     private String createdBy;
@@ -20,6 +21,4 @@ public abstract class BaseMember extends Base {
     @LastModifiedBy
     @Column(length=65, insertable = false)
     private String modifiedBy;
-
-
 }
