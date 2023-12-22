@@ -24,4 +24,4 @@ public enum BoardAuthority {
 
     public String getTitle() {
         return title;
-    }
+    }}

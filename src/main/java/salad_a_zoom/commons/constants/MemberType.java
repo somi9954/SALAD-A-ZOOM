@@ -35,5 +35,5 @@ public enum MemberType {
 
     public boolean getAgree() {
         return agree;
-    }
+    }}
 
