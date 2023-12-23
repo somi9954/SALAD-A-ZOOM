@@ -12,6 +12,7 @@ import salad_a_zoom.commons.constants.MemberType;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Member extends Base {
 
     @Id @GeneratedValue

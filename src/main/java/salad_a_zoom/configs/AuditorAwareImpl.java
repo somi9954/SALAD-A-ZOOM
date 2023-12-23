@@ -1,5 +1,6 @@
 package salad_a_zoom.configs;
 
+import salad_a_zoom.models.member.MemberInfo;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
