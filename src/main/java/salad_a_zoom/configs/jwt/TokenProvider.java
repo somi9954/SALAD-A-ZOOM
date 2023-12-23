@@ -1,5 +1,7 @@
 package salad_a_zoom.configs.jwt;
 
+import salad_a_zoom.models.member.MemberInfo;
+import salad_a_zoom.models.member.MemberInfoService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

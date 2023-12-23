@@ -1,8 +1,5 @@
 package salad_a_zoom.configs;
 
-import salad_a_zoom.configs.jwt.CustomJwtFilter;
-import salad_a_zoom.configs.jwt.JwtAccessDeniedHandler;
-import salad_a_zoom.configs.jwt.JwtAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import salad_a_zoom.configs.jwt.CustomJwtFilter;
+import salad_a_zoom.configs.jwt.JwtAccessDeniedHandler;
+import salad_a_zoom.configs.jwt.JwtAuthenticationEntryPoint;
 
 @Configuration
 @EnableWebSecurity // 기본 웹 보안 활성화
@@ -43,16 +44,27 @@ public class SecurityConfig {
                     c.authenticationEntryPoint(jwtAuthenticationEntryPoint).accessDeniedHandler(jwtAccessDeniedHandler);
                 })
                 .authorizeHttpRequests(c -> {
-                   c.requestMatchers("/api/v1/member",
-                           "/api/v1/member/token",
-                           "/api/v1/member/login",
-                           "/api/v1/member/exists/**").permitAll()
-                           .anyRequest().authenticated();
+                    c.requestMatchers("/api/v1/member",
+                                    "/api/v1/member/token",
+                                    "/api/v1/member/login",
+                                    "/api/v1/member/exists/**").permitAll()
+                            .anyRequest().authenticated();
                 });
 
         return http.build();
     }
 
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**").allowedMethods("*")
+                .allowedOriginPatterns("*")
+                .maxAge(3000)
+                .allowCredentials(true);
+
+//		addMapping - CORS를 적용할 url의 패턴을 정의 (/** 로 모든 패턴을 가능하게 함)
+//		allowedOrigins - 허용할 origin을 정의 (* 로 모든 origin을 허용, 여러개도 지정가능)
+//		allowedMethods - HTTP Method를 지정 (* 로 모든 Method를 허용)
+//		maxAge - 원하는 시간만큼 request를 cashing함
+    }
     @Bean
     public PasswordEncoder passwordEncoder() {
 
