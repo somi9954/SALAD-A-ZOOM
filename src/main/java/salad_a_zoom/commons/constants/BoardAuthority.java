@@ -16,12 +16,13 @@ public enum BoardAuthority {
 
     public static List<String[]> getList() {
         return Arrays.asList(
-                new String[] { ALL.name(), ALL.title },
-                new String[] { MEMBER.name(), MEMBER.title},
-                new String[] { ADMIN.name(), ADMIN.title }
+                new String[]{ALL.name(), ALL.title},
+                new String[]{MEMBER.name(), MEMBER.title},
+                new String[]{ADMIN.name(), ADMIN.title}
         );
     }
 
     public String getTitle() {
         return title;
     }
+}

@@ -23,9 +23,9 @@ public enum MemberType {
 
     public static List<Object[]> getList() {
         return Arrays.asList(
-                new Object[] { GUEST.name(), GUEST.title, GUEST.agree},
-                new Object[] { USER.name(), USER.title, USER.agree},
-                new Object[] { ADMIN.name(), ADMIN.title, ADMIN.agree}
+                new Object[]{GUEST.name(), GUEST.title, GUEST.agree},
+                new Object[]{USER.name(), USER.title, USER.agree},
+                new Object[]{ADMIN.name(), ADMIN.title, ADMIN.agree}
         );
     }
 
@@ -36,4 +36,4 @@ public enum MemberType {
     public boolean getAgree() {
         return agree;
     }
-
+}
