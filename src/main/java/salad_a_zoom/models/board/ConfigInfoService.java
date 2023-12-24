@@ -1,4 +1,4 @@
-package salad_a_zoom.configs.board;
+package salad_a_zoom.models.board;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

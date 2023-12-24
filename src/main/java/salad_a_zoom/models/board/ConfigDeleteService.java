@@ -1,4 +1,4 @@
-package salad_a_zoom.configs.board;
+package salad_a_zoom.models.board;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
