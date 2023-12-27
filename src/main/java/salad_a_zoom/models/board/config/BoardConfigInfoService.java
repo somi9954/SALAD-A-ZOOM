@@ -1,4 +1,4 @@
-package salad_a_zoom.models.board;
+package salad_a_zoom.models.board.config;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 
 @Service
 @RequiredArgsConstructor
-public class ConfigInfoService {
+public class BoardConfigInfoService {
 
     private final ConfigsRepository repository;
 

@@ -1,4 +1,4 @@
-package salad_a_zoom.models.board;
+package salad_a_zoom.models.board.config;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ConfigSaveService {
+public class BoardConfigSaveService {
     private final ConfigsRepository repository;
 
     public <T> void save(String code, T value) {
