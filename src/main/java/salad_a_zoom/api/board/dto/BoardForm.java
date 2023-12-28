@@ -1,38 +1,37 @@
 package salad_a_zoom.api.board.dto;
 
-import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Getter;
+import lombok.Data;
 
 
 import java.util.UUID;
 
-@Getter
-public record BoardForm(
-        Long seq,
+@Data
+public class BoardForm() {
+        private String mode = "write";
 
-        String bId,
+        private Long seq;
 
-        String gid,
+        private String bId;
 
-        String category,
+        private String gid = UUID.randomUUID().toString();
 
-        @AssertTrue
-        boolean notice,
-
-        @NotBlank
-        String subject,
-
-        String guestPw,
+        private String category;
 
         @NotBlank
-        String poster,
+        private String subject;
 
         @NotBlank
-        String content
-) {
+        private String poster;
 
-        public String getGid() {
-                return (gid == null) ? UUID.randomUUID().toString() : gid;
-        }
+        @NotBlank
+        private String content;
+
+        private boolean notice;
+
+        private String guestPw;
+
+        private List<FileInfo> editorImages;
+        private List<FileInfo> attachFiles;
+
 }
