@@ -31,11 +31,13 @@ public class BoardConfigDeleteService {
     /**
      * 목록에서 일괄 삭제
      *
+     * @param idxes
      */
-    public void delete(BoardForm boardForm, Errors errors) {
+    public void delete(List<Integer> idxes, Errors errors) {
         if (idxes == null || idxes.isEmpty()) {
-
+            errors.rejectValue("deleteBoard", "CheckedDelete");
         }
+
 
         for (int idx : idxes) {
             String bId = utils.getParam("bId_" + idx);

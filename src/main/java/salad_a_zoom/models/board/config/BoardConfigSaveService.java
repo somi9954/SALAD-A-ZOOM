@@ -5,27 +5,65 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import salad_a_zoom.commons.constants.BoardAuthority;
+import salad_a_zoom.entities.Board;
+import salad_a_zoom.repositories.board.BoardRepository;
+
+import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class BoardConfigSaveService {
-    private final ConfigsRepository repository;
+    private final BoardRepository boardRepository;
+    private final Utils utils;
 
-    public <T> void save(String code, T value) {
-        Configs config = repository.findById(code).orElseGet(Configs::new);
-        ObjectMapper om = new ObjectMapper();
-        om.registerModule(new JavaTimeModule());
+    public void save(BoardConfigForm form) {
 
-        String json = null;
-        try {
-            json = om.writeValueAsString(value);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
+        String bId = form.getBId();
+        String mode = Objects.requireNonNullElse(form.getMode(), "add");
+        Board board = null;
+        if (mode.equals("edit") && StringUtils.hasText(bId)) {
+            board = boardRepository.findById(bId).orElseThrow(BoardNotFoundException::new);
+        } else { // 추가
+            board = new Board();
+            board.setBId(bId);
         }
 
-        config.setCode(code);
-        config.setValue(json);
+        board.setBName(form.getBName());
+        board.setActive(form.isActive());
+        board.setAuthority(BoardAuthority.valueOf(form.getAuthority()));
+        board.setCategory(form.getCategory());
 
-        repository.saveAndFlush(config);
+        boardRepository.saveAndFlush(board);
+    }
+
+    /**
+     * 게시판 설정 목록 수정
+     *
+     * @param idxes
+     */
+    public void update(List<Integer> idxes) {
+        if (idxes == null || idxes.isEmpty()) {
+            throw new AlertException("수정할 게시판을 선택하세요.");
+        }
+
+        for (int idx : idxes) {
+            String bId = utils.getParam("bId_" + idx);
+            Board board = boardRepository.findById(bId).orElse(null);
+            if (board == null) continue;
+
+            String bName = utils.getParam("bName_" + idx);
+            boolean active = Boolean.parseBoolean(utils.getParam("active_" + idx));
+            BoardAuthority authority =
+                    BoardAuthority.valueOf(utils.getParam("authority_" + idx));
+
+            board.setBName(bName);
+            board.setActive(active);
+            board.setAuthority(authority);
+        }
+
+        boardRepository.flush();
     }
 }
