@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import salad_a_zoom.api.board.dto.BoardDataSearch;
 import salad_a_zoom.api.board.dto.BoardForm;
 import salad_a_zoom.entities.BoardData;
 import salad_a_zoom.entities.BoardView;
@@ -102,7 +103,7 @@ public class BoardInfoService {
     }
 
     public ListData<BoardData> getList(BoardDataSearch search) {
-        QboardData boardData = QBoardData.boardData;
+        QBoardData boardData = QBoardData.boardData;
         int page = Utils.getNumber(search.getPage(), 1);
         int limit = Utils.getNumber(search.getLimit(), 20);
         int offset = (page - 1) * limit;
