@@ -3,12 +3,14 @@ package salad_a_zoom.api.board.validator;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import salad_a_zoom.api.board.dto.BoardForm;
+import salad_a_zoom.commons.validators.PasswordValidator;
 
 
 @Component
-public class BoardFormValidator implements Validator {
+public class BoardFormValidator implements Validator, PasswordValidator {
 
     private final CustomJwtFilter customJwtFilter;
 
@@ -22,9 +24,11 @@ public class BoardFormValidator implements Validator {
         BoardForm form = (BoardForm) target;
 
         /** 비회원 비밀번호 체크 S */
-        if (!customJwtFilter.isUserLoggedIn()) { // 미로그인 상태 -> 비회원 비밀번호 필수
+        if (!customJwtFilter.isLogin()) { // 미로그인 상태 -> 비회원 비밀번호 필수
 
             String guestPw = form.getGuestPw();
+
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, "guestPw", "NotBlank");
 
             if (guestPw == null || guestPw.isBlank()) {
                 errors.rejectValue("guestPw", "NotBlank");
